@@ -1,4 +1,9 @@
-/********** Template CSS **********/
+/**
+ * ******* Template CSS *********
+ *
+ * @format
+ */
+
 :root {
   --primary: #1e60aa;
   --secondary: #ff4917;
@@ -577,4 +582,74 @@
 
 .footer .copyright a {
   color: var(--light);
+}
+
+/* title background */
+.title-comm {
+  color: #fff !important;
+  font-size: 30px !important;
+  position: relative !important;
+  margin-top: 28px !important;
+  margin-bottom: 30px !important;
+  font-weight: 700 !important;
+  background-color: #fff !important;
+  text-align: center !important;
+}
+
+h1.title-comm:before {
+  content: "" !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 0 !important;
+  right: 0 !important;
+  margin-top: 0 !important;
+  border-top: 2px solid #d0d2d3 !important;
+  z-index: 1 !important;
+  display: block !important;
+}
+
+.title-comm .title-holder {
+  min-width: 350px !important;
+  height: 45px !important;
+  background-color: #2d59d4 !important;
+  height: auto !important;
+  line-height: 45px !important;
+  padding: 0px 20px !important;
+  position: relative !important;
+  z-index: 2 !important;
+  text-align: center !important;
+  display: inline-block !important;
+  min-width: 280px !important;
+}
+
+.title-holder:before {
+  content: "" !important;
+  position: absolute !important;
+  right: -14px !important;
+  border-width: 0px !important;
+  bottom: 0px !important;
+  border-style: solid !important;
+  border-color: #2d59d4 transparent !important;
+  display: block !important;
+  width: 0 !important;
+  height: 0 !important;
+  border-top: 23px solid transparent !important;
+  border-bottom: 22px solid transparent !important;
+  border-left: 15px solid #2d59d4 !important;
+}
+
+.title-holder:after {
+  content: "" !important;
+  position: absolute !important;
+  left: -14px !important;
+  border-width: 0px !important;
+  bottom: 0px !important;
+  border-style: solid !important;
+  border-color: #2d59d4 transparent !important;
+  display: block !important;
+  width: 0 !important;
+  height: 0 !important;
+  border-top: 23px solid transparent !important;
+  border-bottom: 22px solid transparent !important;
+  border-right: 15px solid #2d59d4 !important;
 }
