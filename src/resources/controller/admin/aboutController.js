@@ -1,3 +1,5 @@
+/** @format */
+
 class AdminAboutController {
   index(req, res) {
     res.render("adminTemplate/about");
