@@ -16,6 +16,7 @@ function setupMidleware(app) {
     /^\/bao-gia\/.*/,
     /^\/gioi-thieu\/.*/,
   ];
+
   app.use(clientURLs, setupDataClient);
 }
 
