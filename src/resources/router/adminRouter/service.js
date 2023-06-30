@@ -3,7 +3,7 @@ const router = express.Router();
 
 const adminServiceController = require("../../controller/admin/serviceController");
 
-router.use("/", adminServiceController.index);
+router.get("/", adminServiceController.index);
 
 router.post("/", adminServiceController.handlePost);
 

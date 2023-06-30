@@ -21,7 +21,6 @@ function setupMidleware(app) {
 }
 
 async function setupDataClient(req, res, next) {
-  console.log("req", req.baseUrl);
   let admin = {};
   let categories = [];
   try {
@@ -32,7 +31,6 @@ async function setupDataClient(req, res, next) {
         email: item.email,
         address: item.address,
         phoneNumber: item.phoneNumber,
-        website: item.website,
         username: item.username,
         password: item.password,
         seo_title: item.seo_title,
@@ -71,7 +69,6 @@ async function setupDataClient(req, res, next) {
 async function setupDataHomePage(req, res, next) {
   // console.log("req", req);
   if (req.url == "/") {
-    console.log("Home page");
     let admin = {};
     let categories = [];
     try {
@@ -82,7 +79,6 @@ async function setupDataHomePage(req, res, next) {
           email: item.email,
           address: item.address,
           phoneNumber: item.phoneNumber,
-          website: item.website,
           username: item.username,
           password: item.password,
           seo_title: item.seo_title,

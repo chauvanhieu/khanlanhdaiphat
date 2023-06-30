@@ -5,7 +5,7 @@
 </style>
 <div class="container" style="padding: 0 50px 50px 50px">
      <div class="form-container">
-          <form action="/admin/bang-bao-gia" method="post">
+          <form action="/admin/bang-bao-gia" method="post" onsubmit="return validateForm()">
                <div class="form-group">
                     <label>Nội dung bài viết</label>
                     <textarea class="form-control" id="editor" name="content" rows="3">{{quote.content}}</textarea>
@@ -30,4 +30,33 @@
 </div>
 <script>
      CKEDITOR.replace('editor');
+
+     function validateForm() {
+          // Lấy các trường dữ liệu từ form
+          var content = document.forms[0].content.value;
+          var seoTitle = document.forms[0].seo_title.value;
+          var seoKeywords = document.forms[0].seo_keywords.value;
+          var seoDescription = document.forms[0].seo_description.value;
+
+          // Kiểm tra các trường dữ liệu
+          if (content === "") {
+               alert("Nội dung bài viết không được để trống");
+               return false;
+          }
+          if (seoTitle === "") {
+               alert("Tiêu đề bài viết không được để trống");
+               return false;
+          }
+          if (seoKeywords === "") {
+               alert("Từ khóa SEO không được để trống");
+               return false;
+          }
+          if (seoDescription === "") {
+               alert("Mô tả Description không được để trống");
+               return false;
+          }
+
+          // Trả về true để cho phép submit form
+          return true;
+     }
 </script>
