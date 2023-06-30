@@ -26,10 +26,6 @@ const Admin = sequelize.define(
       type: DataTypes.STRING(100),
       allowNull: false,
     },
-    website: {
-      type: DataTypes.STRING(100),
-      allowNull: false,
-    },
     username: {
       type: DataTypes.STRING(30),
       allowNull: false,
