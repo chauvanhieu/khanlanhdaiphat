@@ -5,23 +5,23 @@
 </style>
 <div class="container" style="padding: 0 50px 50px 50px">
      <div class="form-container">
-          <form action="" method="post">
+          <form action="/admin/bang-bao-gia" method="post">
                <div class="form-group">
                     <label>Nội dung bài viết</label>
-                    <textarea class="form-control" id="editor" name="content" rows="3"></textarea>
+                    <textarea class="form-control" id="editor" name="content" rows="3">{{quote.content}}</textarea>
                </div>
 
                <div class="form-group">
                     <label>Tiêu đề bài viết</label>
-                    <input class="form-control" type="text" name="seo_title" />
+                    <input class="form-control" type="text" name="seo_title" value="{{quote.seo_title}}" />
                </div>
                <div class="form-group">
                     <label>Từ khóa SEO</label>
-                    <input class="form-control" type="text" name="seo_keywords" />
+                    <input class="form-control" type="text" name="seo_keywords" value="{{quote.seo_keywords}}" />
                </div>
                <div class="form-group">
                     <label>Mô tả Description</label>
-                    <textarea class="form-control" name="seo_description" rows="3"></textarea>
+                    <textarea class="form-control" name="seo_description" rows="3">{{quote.seo_description}}</textarea>
                </div>
 
                <button type="submit" class="btn btn-success p-2">Cập nhật</button>

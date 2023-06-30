@@ -3,7 +3,7 @@ const router = express.Router();
 
 const adminQuoteController = require("../../controller/admin/quoteController");
 
-router.use("/", adminQuoteController.index);
+router.get("/", adminQuoteController.index);
 
 router.post("/", adminQuoteController.handlePost);
 

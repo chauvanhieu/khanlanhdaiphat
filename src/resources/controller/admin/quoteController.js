@@ -1,10 +1,14 @@
+const Quote = require("../../model/quote");
+
 class AdminQuoteController {
-  index(req, res) {
-    res.render("adminTemplate/quote");
+  async index(req, res) {
+    const post = await Quote.findOne({ where: { id: 1 } });
+
+    res.render("adminTemplate/quote", { quote: post.dataValues });
   }
 
   handlePost(req, res) {
-    res.render("adminTemplate/quote");
+    res.redirect("/admin/bang-bao-gia");
   }
 }
 

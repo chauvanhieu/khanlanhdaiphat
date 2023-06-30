@@ -33,4 +33,4 @@ const Quote = sequelize.define(
   }
 );
 
-module.exports = About;
+module.exports = Quote;

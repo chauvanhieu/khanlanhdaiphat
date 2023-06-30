@@ -1,6 +1,16 @@
+const Quote = require("../model/quote");
+
 class QuoteController {
-  index(req, res) {
-    res.render("clientTemplate/quote");
+  async index(req, res) {
+    const post = await Quote.findOne({ where: { id: 1 } });
+
+    console.log(post.dataValues);
+
+    res.render("clientTemplate/quote", {
+      quote: post.dataValues,
+      keywords: post.dataValues.seo_keywords,
+      description: post.dataValues.seo_description,
+    });
   }
 }
 
