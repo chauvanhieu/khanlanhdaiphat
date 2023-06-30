@@ -12,12 +12,14 @@ const contactRouter = require("./clientRouter/contactRouter");
 
 const adminAboutRouter = require("./adminRouter/about");
 const adminQuoteRouter = require("./adminRouter/quote");
+const adminServiceRouter = require("./adminRouter/service");
 
 function initRouter(app) {
   // ROUTING FOR ADMIN PAGE
   app.use("/admin", adminIndex);
   app.use("/admin/gioi-thieu", adminAboutRouter);
   app.use("/admin/bang-bao-gia", adminQuoteRouter);
+  app.use("/admin/dich-vu", adminServiceRouter);
 
   // ROUTING FOR CLIENT PAGE
   app.use("/bao-gia", quoteRouter);
