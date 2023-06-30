@@ -19,6 +19,8 @@ function initRouter(app) {
   app.use("/dich-vu", serviceRouter);
   app.use("/gioi-thieu", aboutRouter);
   app.use("/lien-he", contactRouter);
+
+  // ROUTING FOR HOME PAGE
   app.use("/", clientIndex);
 }
 
