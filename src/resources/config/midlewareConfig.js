@@ -23,7 +23,7 @@ async function setupDataClient(req, res, next) {
   let admin = {};
   let categories = [];
   try {
-    await Admin.findOne({ id: 1 }).then((item) => {
+    await Admin.findOne({ where: { id: 1 } }).then((item) => {
       admin = {
         id: item.id,
         name: item.name,
@@ -74,7 +74,6 @@ async function setupDataClient(req, res, next) {
               category_id: item.category_id,
               infomation: item.infomation,
               description: item.description,
-              percent: item.percent,
               slug: item.slug,
               status: item.status,
               seo_title: item.seo_title,

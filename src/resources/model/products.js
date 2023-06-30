@@ -31,10 +31,7 @@ const Product = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    percent: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+
     slug: {
       type: DataTypes.STRING(300),
       allowNull: false,

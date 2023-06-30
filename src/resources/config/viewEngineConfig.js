@@ -8,13 +8,13 @@ function setupViewEngine(app) {
 
   app.set("view engine", "hbs");
 
-  app.use("/admin", (req, res, next) => {
-    res.locals.layout = "adminLayout";
+  app.use("/", (req, res, next) => {
+    res.locals.layout = "mainLayout";
     next();
   });
 
-  app.use("/", (req, res, next) => {
-    res.locals.layout = "mainLayout";
+  app.use("/admin", (req, res, next) => {
+    res.locals.layout = "adminLayout";
     next();
   });
 }
