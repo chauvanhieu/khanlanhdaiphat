@@ -1,0 +1,28 @@
+<style>
+     .icon-fixed {
+          text-align: center;
+          position: fixed;
+          z-index: 9;
+          right: 1%;
+          bottom: 1%;
+     }
+
+     .icon-fixed img {
+          height: 60px;
+          width: 60px;
+          margin: 5px;
+     }
+</style>
+
+<div class="icon-fixed">
+
+     <div class="zalo"><a target="_blank" href="https://zalo.me/{{admin.zalo_phoneNumber}}"><img src="/images/zalo.png"
+                    alt=""></a>
+     </div>
+     <div class="messenger"><a target="_blank" href="{{admin.facebook_id}}"><img src="/images/mess.gif" alt=""></a>
+     </div>
+     <div class="call">
+          <a href="tel:0358037265"><img style="height: 90px !important; width: 90px !important; margin: 0px !important"
+                    src="/images/call.gif" alt=""></a>
+     </div>
+</div>
