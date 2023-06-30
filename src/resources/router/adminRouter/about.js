@@ -5,8 +5,8 @@ const router = express.Router();
 
 const adminAboutController = require("../../controller/admin/aboutController");
 
-router.use("/", adminAboutController.index);
+router.get("/", adminAboutController.index);
 
-router.post("/", adminAboutController.handlePost);
+router.post("/", adminAboutController.updateAbout);
 
 module.exports = router;
