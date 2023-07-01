@@ -14,6 +14,7 @@ const adminAboutRouter = require("./adminRouter/about");
 const adminQuoteRouter = require("./adminRouter/quote");
 const adminServiceRouter = require("./adminRouter/service");
 const adminCustomerRouter = require("./adminRouter/customer");
+const adminLoginRouter = require("./adminRouter/login");
 
 function initRouter(app) {
   // ROUTING FOR ADMIN PAGE
@@ -22,6 +23,7 @@ function initRouter(app) {
   app.use("/admin/bang-bao-gia", adminQuoteRouter);
   app.use("/admin/dich-vu", adminServiceRouter);
   app.use("/admin/khach-hang", adminCustomerRouter);
+  app.use("/dang-nhap", adminLoginRouter);
 
   // ROUTING FOR CLIENT PAGE
   app.use("/bao-gia", quoteRouter);

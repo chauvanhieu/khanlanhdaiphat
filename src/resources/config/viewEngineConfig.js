@@ -17,5 +17,10 @@ function setupViewEngine(app) {
     res.locals.layout = "adminLayout";
     next();
   });
+
+  app.use("/dang-nhap", (req, res, next) => {
+    res.locals.layout = "loginLayout";
+    next();
+  });
 }
 module.exports = setupViewEngine;
