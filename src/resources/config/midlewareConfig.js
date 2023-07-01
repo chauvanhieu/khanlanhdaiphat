@@ -50,9 +50,6 @@ async function setupDataClient(req, res, next) {
           name: item.name,
           slug: item.slug,
           status: item.status,
-          seo_title: item.seo_title,
-          seo_description: item.seo_description,
-          seo_keywords: item.seo_keywords,
         };
         categories.push(category);
       });
