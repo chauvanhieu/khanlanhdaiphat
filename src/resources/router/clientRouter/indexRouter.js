@@ -76,18 +76,15 @@ router.get("/", async (req, res) => {
         });
       }
     }
-    res.locals.admin = admin;
-    res.locals.keywords = admin.keywords;
-    res.locals.description = admin.description;
-    res.locals.categories = categories;
-    res.locals.categoryAPI = categoryAPI;
   } catch (error) {
     console.error(error);
   }
 
   res.render("clientTemplate/index", {
     admin: admin,
-    keywords: admin.keywords,
+    title: admin.seo_title,
+    keywords: admin.seo_keywords,
+    description: admin.seo_description,
     categories: categories,
     categoryAPI: categoryAPI,
   });
