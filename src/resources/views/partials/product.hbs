@@ -1,0 +1,111 @@
+<div class="container mt-5">
+     <div class="product-info">
+          <div class="row ">
+               <div class="image col-sm-12 col-md-5 col-xl-5 col-lg-5 text-center">
+                    <img src="{{product.image}}" alt="{{product.name}}" class="img-thumbnail"
+                         style="width:  90% !important;">
+               </div>
+               <div class="info col-sm-12 col-md-7 col-xl-7 col-lg-7">
+                    <div class="title" style="background-color: #1E60AA;">
+                         <div class="row">
+
+                              <div class="col-9">
+                                   <h2 style="padding: 10px; color:white">{{product.name}}</h2>
+                              </div>
+                              <div class="col-3 row" style="align-content: center;">
+                                   <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"
+                                        class="btn btn-danger" style="float: right;">Đặt hàng</button>
+                              </div>
+                         </div>
+                         <div class="modal fade" id="exampleModalCenter" tabindex="-1"
+                              aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered">
+                                   <div class="modal-content">
+                                        <form action="/dat-hang" method="post">
+                                             <div class="modal-header">
+                                                  <h1 class="modal-title fs-5" id="exampleModalCenterTitle">Gửi đơn
+                                                       đặt
+                                                       mẫu
+                                                       tại đây</h1>
+
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                       aria-label="Close"></button>
+
+                                             </div>
+                                             <div class="container text-center">
+                                                  <p>Chúng tôi sẽ liên hệ với quý khách với đơn đặt hàng này,
+                                                       hãy cho chúng tôi thông tin để liên lạc nhé.</p>
+                                             </div>
+                                             <div class="modal-body">
+                                                  <input type="hidden" name="product_id" value="{{product.id}}">
+                                                  <div class="form-group">
+                                                       <label>Tên của bạn</label>
+                                                       <input type="text" name="customer_name" class="form-control"
+                                                            required>
+                                                  </div>
+                                                  <div class="form-group">
+                                                       <label>Số điện thoại</label>
+                                                       <input type="text" name="customer_phoneNumber"
+                                                            class="form-control" required>
+                                                  </div>
+                                                  <div class="form-group">
+                                                       <label>Địa chỉ</label>
+                                                       <input type="text" name="customer_address" class="form-control"
+                                                            required>
+                                                  </div>
+
+                                             </div>
+                                             <div class="modal-footer">
+                                                  <button type="submit" class="btn btn-primary">Đặt mẫu</button>
+                                                  <button type="button" class="btn btn-secondary"
+                                                       data-bs-dismiss="modal">Đóng</button>
+
+                                             </div>
+                                        </form>
+                                   </div>
+                              </div>
+                         </div>
+
+                    </div>
+                    <div>
+                         {{product.infomation}}
+                    </div>
+
+               </div>
+          </div>
+     </div>
+     <div class="product-description mt-5 ">
+          <div class="text-center wow fadeInUp" data-wow-delay="0.0000001s">
+               <h1 class="mb-5 title-comm"><span class="title-holder">Thông tin về sản phẩm</span></h1>
+          </div>
+          {{product.description}}
+     </div>
+     <div class="show-more">
+          <div class="text-center wow fadeInUp" data-wow-delay="0.0000001s">
+               <h1 class="mb-5 title-comm"><span class="title-holder">Sản phẩm cùng loại</span></h1>
+          </div>
+          <div class="row g-4 mt-5 container">
+
+               {{#each moreProducts}}
+
+               <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.0000001s" style="text-align: center;">
+                    <div class="team-item">
+                         <div class="position-relative overflow-hidden">
+                              <img class="img-fluid" src="{{image}}" alt="">
+                         </div>
+                         <div class="team-text">
+                              <div class="bg-light">
+                                   <h5 class="fw-bold mb-0">{{name}}</h5>
+                              </div>
+                              <div class="bg-primary">
+                                   <a class="btn btn-square mx-1" href="/san-pham/{{slug}}">Đặt mẫu này</a>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+               {{/each}}
+
+
+          </div>
+     </div>
+</div>

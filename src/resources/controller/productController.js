@@ -98,6 +98,48 @@ class ProductController {
       res.status(500).send("Đã xảy ra lỗi");
     }
   }
+
+  async showOne(req, res) {
+    const slug = req.params.slug;
+    let category_id;
+    await Product.findOne({ where: { slug } })
+      .then((product) => {
+        category_id = product.dataValues.category_id;
+        res.locals.product = product.dataValues;
+        res.locals.title = product.dataValues.seo_title;
+        res.locals.keywords = product.dataValues.seo_keywords;
+        res.locals.description = product.dataValues.seo_description;
+      })
+      .catch((err) => {
+        console.error(err);
+        return res.redirect("/");
+      });
+
+    let moreProducts = [];
+
+    await Product.findAll({ where: { category_id } }).then((products) => {
+      if (products && products.length > 0) {
+        products.forEach((p) => {
+          let item = {
+            id: p.id,
+            name: p.name,
+            image: p.image,
+            category_id: p.category_id,
+            infomation: p.infomation,
+            description: p.description,
+            slug: p.slug,
+            seo_title: p.seo_title,
+            seo_keywords: p.seo_keywords,
+            seo_description: p.seo_description,
+          };
+          moreProducts.push(item);
+        });
+      }
+      res.render("clientTemplate/single-product", {
+        moreProducts,
+      });
+    });
+  }
 }
 
 module.exports = new ProductController();

@@ -9,26 +9,27 @@
                <div class="col-lg-8">
                     <div class="bg-light text-center p-5">
                          <h1 class="mb-4">Liên hệ cho chúng tôi để đặt mẫu</h1>
-                         <form>
+                         <form action="/lien-he" method="post" id="form-contact">
                               <div class="row g-3">
                                    <div class="col-12 col-sm-6">
-                                        <input type="text" class="form-control border-0" placeholder="Tên đầy đủ"
+                                        <input type="text" class="form-control border-0" name="name" id="name"
+                                             placeholder="Tên đầy đủ" style="height: 55px;">
+                                   </div>
+                                   <div class="col-12 col-sm-6">
+                                        <input type="email" name="email" id="email" class="form-control border-0"
+                                             placeholder="Email" style="height: 55px;">
+                                   </div>
+                                   <div class="col-12 col-sm-6">
+                                        <input type="text" name="phoneNumber" id="phoneNumber"
+                                             class="form-control border-0" placeholder="Số điện thoại"
                                              style="height: 55px;">
                                    </div>
                                    <div class="col-12 col-sm-6">
-                                        <input type="email" class="form-control border-0" placeholder="Email"
-                                             style="height: 55px;">
-                                   </div>
-                                   <div class="col-12 col-sm-6">
-                                        <input type="email" class="form-control border-0" placeholder="Số điện thoại"
-                                             style="height: 55px;">
-                                   </div>
-                                   <div class="col-12 col-sm-6">
-                                        <input type="email" class="form-control border-0" placeholder="Địa chỉ"
-                                             style="height: 55px;">
+                                        <input type="text" name="address" id="address" class="form-control border-0"
+                                             placeholder="Địa chỉ" style="height: 55px;">
                                    </div>
                                    <div class="col-12">
-                                        <textarea class="form-control border-0"
+                                        <textarea name="problem" class="form-control border-0"
                                              placeholder="Mô tả về mẫu bạn muốn đặt"></textarea>
                                    </div>
                                    <div class="col-12">
@@ -43,3 +44,50 @@
      </div>
 </div>
 <!-- Booking End -->
+
+<script>
+     // Lấy biểu mẫu và các trường dữ liệu
+     var form = document.getElementById('form-contact');
+     var nameInput = document.getElementById('name');
+     var emailInput = document.getElementById('email');
+     var phoneNumberInput = document.getElementById('phoneNumber');
+     var addressInput = document.getElementById('address');
+
+     // Gắn sự kiện submit cho biểu mẫu
+     form.addEventListener('submit', function (event) {
+          // Kiểm tra dữ liệu trước khi submit
+
+          event.preventDefault(); // Ngăn chặn việc gửi biểu mẫu nếu tên không hợp lệ
+
+          // Các hàm kiểm tra dữ liệu
+
+          // Kiểm tra nếu tên rỗng
+          if (nameInput.value.trim() === '') {
+               alert('Vui lòng nhập tên đầy đủ.');
+               return false;
+          }
+
+          // Sử dụng một biểu thức chính quy để kiểm tra định dạng email
+          var emailPattern = /^\S+@\S+\.\S+$/;
+          if (!emailPattern.test(emailInput.value)) {
+               alert('Vui lòng nhập một địa chỉ email hợp lệ.');
+               return false;
+          }
+
+          // Sử dụng một biểu thức chính quy để kiểm tra định dạng số điện thoại
+          var phoneNumberPattern = /^[0-9]{10}$/;
+          if (!phoneNumberPattern.test(phoneNumberInput.value)) {
+               alert('Vui lòng nhập một số điện thoại hợp lệ (10 chữ số).');
+               return false;
+          }
+
+          // Kiểm tra nếu địa chỉ rỗng
+          if (addressInput.value.trim() === '') {
+               alert('Vui lòng nhập địa chỉ.');
+               return false;
+          }
+
+          return true;
+     }
+     );
+</script>

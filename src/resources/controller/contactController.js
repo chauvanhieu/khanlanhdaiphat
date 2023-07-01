@@ -17,7 +17,7 @@ class ServiceController {
     await Customer.create(customer).catch((error) => {
       console.error("Lỗi khi thêm khách hàng:", error);
     });
-    res.redirect("/lien-he");
+    res.redirect("/");
   }
 }
 

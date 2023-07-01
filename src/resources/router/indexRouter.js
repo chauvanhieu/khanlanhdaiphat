@@ -10,6 +10,7 @@ const serviceRouter = require("./clientRouter/serviceRouter");
 const quoteRouter = require("./clientRouter/quoteRouter");
 const contactRouter = require("./clientRouter/contactRouter");
 const productRouter = require("./clientRouter/productRouter");
+const orderRouter = require("./clientRouter/orderRouter");
 
 const adminAboutRouter = require("./adminRouter/about");
 const adminQuoteRouter = require("./adminRouter/quote");
@@ -34,6 +35,7 @@ function initRouter(app) {
   app.use("/gioi-thieu", aboutRouter);
   app.use("/lien-he", contactRouter);
   app.use("/san-pham", productRouter);
+  app.use("/dat-hang", orderRouter);
 
   // ROUTING FOR HOME PAGE
   app.use("/", clientIndex);
