@@ -1,0 +1,90 @@
+<style>
+     .list-group-item:hover {
+          background-color: #3067db;
+          color: white;
+          font-weight: bold;
+     }
+
+
+     /* CSS cho màn hình lớn (desktop) */
+     @media screen and (min-width: 1024px) {
+          .product-top-container {
+               display: flex;
+               width: 100%;
+          }
+
+          .form-container {
+               width: 30%;
+          }
+
+          .banner-container {
+               width: 70%;
+          }
+     }
+
+     /* CSS cho màn hình trung bình (tablet) */
+     @media screen and (min-width: 768px) and (max-width: 1023px) {}
+
+     /* CSS cho màn hình nhỏ (điện thoại di động) */
+     @media screen and (max-width: 767px) {}
+</style>
+
+
+<div class="container mt-5">
+
+     <div class="product-top-container container-fluid">
+          <div class="form-container p-2">
+               <form action="/san-pham" method="get">
+                    <div class="form-group">
+                         <label>Tìm kiếm</label>
+                         <input type="text" name="keyword" class="form-control" placeholder="Tìm kiếm sản phẩm"
+                              value="" />
+                    </div>
+               </form>
+               <div class="categories mt-4">
+                    <ul class="list-group">
+                         <a href="/san-pham">
+                              <li class="list-group-item">Hiển thị tất cả</li>
+                         </a>
+                         {{#each categories}}
+                         <a href="?danh_muc={{id}}">
+                              <li class="list-group-item">{{name}}</li>
+                         </a>
+                         {{/each}}
+                    </ul>
+               </div>
+          </div>
+          <div class="banner-container">
+               <img src="/images/banner.jpg" class="img-fluid" style="width: 100%; !important" alt="thumbnail">
+          </div>
+     </div>
+
+     <div class="products-show-all mt-3">
+          <div class="row g-4">
+
+
+               {{#each products}}
+               <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.0000001s" style="text-align: center;">
+                    <div class="team-item">
+                         <div class="position-relative overflow-hidden">
+                              <img class="img-thumbnail" src="{{this.image}}" alt="">
+                         </div>
+                         <div class="team-text">
+                              <div class="bg-light">
+                                   <h5 class="fw-bold mb-0">{{this.name}}</h5>
+                              </div>
+                              <div class="bg-primary">
+                                   <a class="btn btn-square mx-1" href="">Đặt mẫu này</a>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+               {{/each}}
+
+
+
+
+
+          </div>
+     </div>
+</div>

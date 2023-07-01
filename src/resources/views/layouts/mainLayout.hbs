@@ -2,12 +2,25 @@
 <html lang="en">
 
 <head>
-     <title>{{title}}</title>
+     <title>{{title}} - KHĂN LẠNH ĐẠI PHÁT</title>
 
      <meta charset="utf-8">
      <meta content="width=device-width, initial-scale=1.0" name="viewport">
-     <meta content="{{keywords}}" name="keywords">
-     <meta content="{{description}}" name="description">
+
+     {{!-- SEO --}}
+     <meta name="keywords" content="{{keywords}}">
+     <meta name="description" content="{{description}}">
+     <meta property="og:title" content="{{title}}" />
+     <meta property="og:description" content="{{description}}" />
+     <meta content="INDEX,FOLLOW" name="robots" />
+     <meta name="copyright" content="Cơ sở sản xuất khăn lạnh Đại Phát" />
+     <meta name="author" content="Cơ sở sản xuất khăn lạnh Đại Phát" />
+     <meta name="GENERATOR" content="Cơ sở sản xuất khăn lạnh Đại Phát" />
+     <meta property="og:site_name" content="khanlanhdaiphat.com" />
+     <meta property="og:type" content="website" />
+     <meta property="og:locale" content="vi_VN" />
+     <meta property="fb:pages" content="100009039281564" />
+
 
      <!-- Favicon -->
      <link href="/images/favicon.jpg" rel="icon">
@@ -32,6 +45,7 @@
 
      <!-- Template Stylesheet -->
      <link href="/css/style.css" rel="stylesheet">
+
 
 
      {{{admin.head_script}}}
