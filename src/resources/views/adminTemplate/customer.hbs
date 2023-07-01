@@ -1,0 +1,37 @@
+<div class="container">
+     <div class="form-container">
+          <form method="get">
+               <div class="form-group">
+                    <label for="">Tìm kiếm</label>
+                    <input type="text" class="form-control" name="keyword" onblur="this.form.submit()"
+                         value="{{keyword}}" placeholder="Nhập tên, số điện thoại hoặc email..." />
+               </div>
+          </form>
+     </div>
+     <div class="table-container">
+          <table class="table">
+               <thead class="thead-dark">
+                    <tr>
+                         <th scope="col">Mã</th>
+                         <th scope="col">Tên khách hàng</th>
+                         <th scope="col">Số điện thoại</th>
+                         <th scope="col">Email</th>
+                         <th scope="col">Địa chỉ</th>
+                         <th scope="col">Vấn đề quan tâm</th>
+                    </tr>
+               </thead>
+               <tbody>
+                    {{#each customers}}
+                    <tr>
+                         <th scope="row">{{id}}</th>
+                         <td>{{name}}</td>
+                         <td>{{phoneNumber}}</td>
+                         <td>{{email}}</td>
+                         <td>{{address}}</td>
+                         <td>{{problem}}</td>
+                    </tr>
+                    {{/each}}
+               </tbody>
+          </table>
+     </div>
+</div>

@@ -6,6 +6,7 @@ class QuoteController {
 
     res.render("clientTemplate/quote", {
       quote: post.dataValues,
+      title: "Thông tin báo giá",
       keywords: post.dataValues.seo_keywords,
       description: post.dataValues.seo_description,
     });

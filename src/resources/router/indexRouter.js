@@ -13,6 +13,7 @@ const contactRouter = require("./clientRouter/contactRouter");
 const adminAboutRouter = require("./adminRouter/about");
 const adminQuoteRouter = require("./adminRouter/quote");
 const adminServiceRouter = require("./adminRouter/service");
+const adminCustomerRouter = require("./adminRouter/customer");
 
 function initRouter(app) {
   // ROUTING FOR ADMIN PAGE
@@ -20,6 +21,7 @@ function initRouter(app) {
   app.use("/admin/gioi-thieu", adminAboutRouter);
   app.use("/admin/bang-bao-gia", adminQuoteRouter);
   app.use("/admin/dich-vu", adminServiceRouter);
+  app.use("/admin/khach-hang", adminCustomerRouter);
 
   // ROUTING FOR CLIENT PAGE
   app.use("/bao-gia", quoteRouter);

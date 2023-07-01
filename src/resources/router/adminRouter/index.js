@@ -1,5 +1,4 @@
 const express = require("express");
-const { where } = require("sequelize");
 const router = express.Router();
 const Admin = require("../../model/admin");
 
