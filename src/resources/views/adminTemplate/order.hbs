@@ -1,0 +1,48 @@
+<style>
+     td,
+     th {
+          vertical-align: unset !important;
+          text-align: center;
+     }
+</style>
+
+<div class="container-fluid">
+     <div class="form-container">
+          <form method="get">
+               <div class="form-group">
+                    <label for="">Tìm kiếm</label>
+                    <input type="text" class="form-control" name="keyword" onblur="this.form.submit()"
+                         value="{{keyword}}" placeholder="Nhập tên hoặc số điện thoại..." />
+               </div>
+          </form>
+     </div>
+     <div class="table-container">
+          <table class="table">
+               <thead class="thead-dark">
+                    <tr>
+                         <th scope="col">Mã</th>
+                         <th scope="col">Tên khách hàng</th>
+                         <th scope="col">Số điện thoại</th>
+                         <th scope="col">Địa chỉ</th>
+                         <th scope="col">Mẫu đã đặt</th>
+                         <th scope="col"></th>
+                    </tr>
+               </thead>
+               <tbody>
+                    {{#each orders}}
+                    <tr>
+                         <th scope="row">{{id}}</th>
+                         <td>{{customer_name}}</td>
+                         <td>{{customer_phoneNumber}}</td>
+                         <td>{{customer_address}}</td>
+
+                         <td><a href="/admin/san-pham/{{product.slug}}">{{product.name}}</a></td>
+
+                         <td><img style="max-width: 150px !important;" src="{{product.image}}" class="img-thumbnail">
+                         </td>
+                    </tr>
+                    {{/each}}
+               </tbody>
+          </table>
+     </div>
+</div>
