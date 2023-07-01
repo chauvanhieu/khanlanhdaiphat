@@ -1,6 +1,4 @@
-const { where } = require("sequelize");
 const Admin = require("../../model/admin");
-const jwt = require("jsonwebtoken");
 
 class AdminLoginController {
   index(req, res) {
@@ -14,10 +12,10 @@ class AdminLoginController {
     Admin.findOne({ where: { id: 1 }, username, password })
       .then((admin) => {
         if (admin.username === username && admin.password === password) {
-            
+          const token = generateRandomString(20);
+
           // Đăng nhập thành công, tạo token
-          const token = jwt.sign({ adminId: admin.id }, "your_secret_key");
-          res.cookie("adminToken", token);
+          res.cookie("adminToken", JSON.stringify(token));
 
           // Chuyển hướng đến trang dashboard sau khi đăng nhập thành công
           res.redirect("/admin/");
@@ -33,6 +31,18 @@ class AdminLoginController {
         res.render("adminTemplate/login", { error: "An error occurred" });
       });
   }
-
 }
-module.exports = AdminLoginController;
+module.exports = new AdminLoginController();
+
+function generateRandomString(length) {
+  let result = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+
+  return result;
+}
