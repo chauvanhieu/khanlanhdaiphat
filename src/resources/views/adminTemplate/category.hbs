@@ -13,9 +13,93 @@
           text-align: left !important;
           margin-bottom: 0;
      }
+.switch {
+ position: relative;
+ display: table-cell;
+ width: 120px;
+ height: 34px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.switch input {
+ display: none;
+}
+
+.slider {
+ position: absolute;
+ cursor: pointer;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ background-color: #3C3C3C;
+ -webkit-transition: .4s;
+ transition: .4s;
+ border-radius: 34px;
+}
+
+.slider:before {
+ position: absolute;
+ content: "";
+ height: 26px;
+ width: 26px;
+ left: 4px;
+ bottom: 4px;
+ background-color: white;
+ -webkit-transition: .4s;
+ transition: .4s;
+ border-radius: 50%;
+}
+
+input:checked + .slider {
+ background-color: #0E6EB8;
+}
+
+input:focus + .slider {
+ box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+ -webkit-transform: translateX(26px);
+ -ms-transform: translateX(26px);
+ transform: translateX(85px);
+}
+
+/*------ ADDED CSS ---------*/
+.slider:after {
+ content: 'Ngừng Bán';
+ color: white;
+ display: block;
+ position: absolute;
+ transform: translate(-50%,-50%);
+ top: 50%;
+ left: 50%;
+ font-size: 10px;
+}
+
+input:checked + .slider:after {
+ content: 'Đang Bán';
+}
+
+/*--------- END --------*/
 </style>
 
 <div class="container-fluid">
+    <div class="form-container">
+          <form method="post">
+               <div class="form-group">
+                    <label for="">Thêm danh mục mới</label>
+                    <div class="row" style="margin: 0 !important;">
+                        <input type="text" class="form-control col-10" name="newCategory"
+                            value="{{keyword}}" placeholder="Tên loại sản phẩm mới" />
+                        <button type="submit" class="btn-dark col-2">Lưu</button>
+                    </div>
+               </div>
+          </form>
+     </div>
+    <hr>
      <div class="form-container">
           <form method="get">
                <div class="form-group">
@@ -42,7 +126,13 @@
                          <th scope="row">{{id}}</th>
                          <td>{{name}}</td>
                          <td>{{slug}}</td>
-                         <td>{{status}}</td>
+                         <td>
+                            {{#if status}}
+                                <p style="font-weight: 500; color: #2cd20f;">Đang Kinh Doanh</p>
+                            {{else}}
+                                <p style="font-weight: 500; color: #FD1C03;">Tạm Ngưng</p>
+                            {{/if}}
+                         </td>
                          <td>{{!-- Collapse Modal --}}
                               <button class="btn btn-primary collapse-button" type="button" data-bs-toggle="collapse"
                                    data-bs-target="#collapseExample{{id}}" aria-expanded="false"
@@ -56,11 +146,16 @@
                               <div class="collapse collapse-element" id="collapseExample{{id}}"
                                    style="width: 100%  !important;">
                                    <div class="editForm">
-                                        <form class="field">
+                                        <form action="/admin/danh-muc/update" method="post" class="field">
+                                            <input type="hidden" name="id" value="{{id}}">
                                              <div class="row" style="justify-content: space-around !important">
-                                                  <input class="form-control col-5" type="text" value="{{name}}">
-                                                  <button class="form-control btn-success col-2">Lưu</button>
-                                                  <button class="form-control btn-danger col-2">Hủy</button>
+                                                <input name="newCategoryName" required class="form-control col-5" type="text" value="{{name}}">
+                                                <select name="newStatus" class="form-select" aria-label="Default select example">
+                                                    <option value="1" {{#if this.status}}selected{{/if}}>Đang bán</option>
+                                                    <option value="0" {{#unless this.status}}selected{{/unless}}>Ngừng bán</option>
+                                                </select>
+                                                <button type="submit" class="form-control btn-success col-2">Lưu</button>
+                                                <a style="text-align: center;" class="form-control btn-danger col-2" href="/admin/danh-muc">Hủy</a>
                                              </div>
                                         </form>
                                    </div>
@@ -87,3 +182,5 @@
           });
      });
 </script>
+
+
