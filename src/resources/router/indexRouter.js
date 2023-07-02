@@ -20,7 +20,7 @@ const adminLoginRouter = require("./adminRouter/login");
 const adminLogoutRouter = require("./adminRouter/logout");
 const adminOrderRouter = require("./adminRouter/order");
 const adminCategoryRouter = require("./adminRouter/category");
-
+const adminProductRouter = require("./adminRouter/product");
 
 function initRouter(app) {
   // ROUTING FOR ADMIN PAGE
@@ -31,6 +31,7 @@ function initRouter(app) {
   app.use("/admin/khach-hang", adminCustomerRouter);
   app.use("/admin/don-hang", adminOrderRouter);
   app.use("/admin/danh-muc", adminCategoryRouter);
+  app.use("/admin/san-pham", adminProductRouter);
   app.use("/dang-nhap", adminLoginRouter);
   app.use("/dang-xuat", adminLogoutRouter);
 

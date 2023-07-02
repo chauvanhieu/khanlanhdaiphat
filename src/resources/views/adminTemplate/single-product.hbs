@@ -1,0 +1,93 @@
+<div class="container mb-3">
+     <div class="form-container">
+          <form action="/admin/san-pham/update" method="post" enctype="multipart/form-data">
+               <input type="hidden" value="{{product.id}}" name="id">
+               <input type="hidden" value="{{product.image}}" name="old_image">
+               <div class="row">
+                    <div class="info col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                         <div class="form-group">
+                              <label>Tên sản phẩm</label>
+                              <input type="text" name="name" value="{{product.name}}" class="form-control" required>
+                         </div>
+                         <div class="form-group">
+                              <label>Danh mục</label>
+                              <select name="category_id" class="form-control">
+                                   {{{categories}}}
+                              </select>
+                         </div>
+                         <div class="form-group">
+                              <label>Tình trạng</label>
+                              <select name="status" class="form-control">
+                                   {{#if product.status}}
+                                   <option value="1" selected>Đang bán</option>
+                                   <option value="0">Ngưng bán</option>
+                                   {{else}}
+                                   <option value="1">Đang bán</option>
+                                   <option value="0" selected>Ngưng bán</option>
+                                   {{/if}}
+                              </select>
+                         </div>
+                    </div>
+                    <div class="image col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                         <img src="{{product.image}}" id="imageElement" style="max-height: 200px; !important"
+                              class="img-thumbnail" alt="">
+                         <div class="form-group">
+                              <input type="file" id="imageInput" name="image" class="form-control">
+                         </div>
+                    </div>
+               </div>
+               <div class="form-group">
+                    <label>Thông tin sản phẩm: (giá cả, kích thước, chất liệu...)</label>
+                    <textarea name="infomation" id="infomation" class="form-control">{{product.infomation}}</textarea>
+               </div>
+               <div class="form-group">
+                    <label>Bài viết mô tả thêm về sản phẩm</label>
+                    <textarea name="description" id="description"
+                         class="form-control">{{product.description}}</textarea>
+               </div>
+               <div class="form-group">
+                    <label>Tiêu đề bài viết</label>
+                    <input class="form-control" type="text" name="seo_title" value="{{product.seo_title}}" />
+               </div>
+               <div class="form-group">
+                    <label>Từ khóa SEO</label>
+                    <input class="form-control" type="text" name="seo_keywords" value="{{product.seo_keywords}}" />
+               </div>
+               <div class="form-group">
+                    <label>Mô tả Description</label>
+                    <textarea class="form-control" name="seo_description"
+                         rows="3">{{product.seo_description}}</textarea>
+               </div>
+               <button type="submit" class="btn btn-success">Cập nhật</button>
+          </form>
+     </div>
+</div>
+<script>
+     CKEDITOR.replace('infomation');
+     CKEDITOR.replace('description');
+
+
+
+     // Lấy đối tượng input từ HTML dựa vào id
+     var imageInput = document.getElementById('imageInput');
+
+     // Lắng nghe sự kiện 'change' khi người dùng chọn một file
+     imageInput.addEventListener('change', function (event) {
+          var file = event.target.files[0]; // Lấy file đầu tiên trong danh sách các file đã chọn
+
+          // Kiểm tra xem người dùng đã chọn file hay chưa
+          if (file) {
+               var reader = new FileReader(); // Tạo đối tượng FileReader để đọc nội dung của file
+
+               // Xử lý sự kiện 'load' khi FileReader hoàn thành việc đọc file
+               reader.addEventListener('load', function () {
+                    var imageURL = reader.result; // Lấy URL hình ảnh đã đọc từ file
+
+                    var imageElement = document.getElementById('imageElement');
+                    imageElement.src = imageURL; // Gán URL hình ảnh cho thuộc tính 'src' của thẻ 'img'
+               });
+
+               reader.readAsDataURL(file); // Đọc file dưới dạng URL dữ liệu (data URL)
+          }
+     });
+</script>

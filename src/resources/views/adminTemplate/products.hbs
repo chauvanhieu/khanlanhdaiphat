@@ -1,0 +1,69 @@
+<style>
+     .table th,
+     .table td {
+          padding: 0.75rem;
+          vertical-align: middle !important;
+          border-top: 1px solid #dee2e6;
+     }
+</style>
+
+<div class="container-fluid">
+     <div class="row">
+          <div class="products-aside col-sm-12 col-md-12 col-lg-2 col-xl-2">
+               <form method="get">
+                    <div class="form-group">
+                         <label>Tìm kiếm</label>
+                         <input type="text" name="keyword" class="form-control" placeholder="Tìm kiếm sản phẩm"
+                              value="" />
+                    </div>
+               </form>
+               <div class="categories mt-4">
+                    <ul class="list-group">
+                         <a href="/san-pham">
+                              <li class="list-group-item">Hiển thị tất cả</li>
+                         </a>
+                         {{#each categories}}
+                         <a href="?danh_muc={{id}}">
+                              <li class="list-group-item">{{name}}</li>
+                         </a>
+                         {{/each}}
+                    </ul>
+               </div>
+          </div>
+          <div class="products-table col-sm-12 col-md-12 col-lg-10 col-xl-10">
+               <table class="table">
+                    <thead class="thead-dark">
+                         <tr>
+                              <th scope="col">Mã</th>
+                              <th scope="col">Ảnh</th>
+                              <th scope="col">Tên sản phẩm</th>
+                              <th scope="col">Thông tin</th>
+                              <th scope="col">Trạng thái</th>
+                              <th scope="col"></th>
+                         </tr>
+                    </thead>
+                    <tbody>
+                         {{#each products}}
+                         <tr>
+                              <th scope="row">{{id}}</th>
+                              <td><img src="{{image}}" class="img-thumbnail" style="max-width: 130px !important;"></td>
+                              <td>{{name}}</td>
+                              <td>{{limitString infomation 60}}</td>
+                              <td>
+
+                                   {{#if status}}
+                                   <span style="color: green;">Đang bán</span>
+                                   {{else}}
+                                   <span style="color: red;">Ngừng bán</span>
+                                   {{/if}}
+                              </td>
+                              <td><a href="/admin/san-pham/{{slug}}"><button class="btn btn-success">Xem</button></a>
+                              </td>
+                         </tr>
+                         {{/each}}
+                    </tbody>
+               </table>
+          </div>
+     </div>
+
+</div>

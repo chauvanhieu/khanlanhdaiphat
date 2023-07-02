@@ -50,7 +50,7 @@ router.get("/", async (req, res) => {
           let productArray = [];
           items.forEach((item) => {
             let i = {
-              id: 1,
+              id: item.id,
               name: item.name,
               image: item.image,
               category_id: item.category_id,

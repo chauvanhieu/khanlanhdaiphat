@@ -1,0 +1,77 @@
+<div class="container mb-3">
+     <div class="form-container">
+          <form action="/admin/san-pham/create" method="post" enctype="multipart/form-data">
+               <div class="row">
+                    <div class="info col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                         <div class="form-group">
+                              <label>Tên sản phẩm</label>
+                              <input type="text" name="name" class="form-control" required>
+                         </div>
+                         <div class="form-group">
+                              <label>Danh mục</label>
+                              <select name="category_id" class="form-control">
+                                   {{#each categories}}
+                                   <option value="{{id}}">{{name}}</option>
+                                   {{/each}}
+                              </select>
+                         </div>
+                    </div>
+                    <div class="image col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                         <img src="" id="imageElement" class="img-thumbnail" style="max-height: 200px; !important"
+                              alt="">
+                         <div class="form-group">
+                              <input type="file" id="imageInput" name="image" class="form-control" required>
+                         </div>
+                    </div>
+               </div>
+               <div class="form-group">
+                    <label>Thông tin sản phẩm: (giá cả, kích thước, chất liệu...)</label>
+                    <textarea name="infomation" id="infomation" class="form-control"></textarea>
+               </div>
+               <div class="form-group">
+                    <label>Bài viết mô tả thêm về sản phẩm</label>
+                    <textarea name="description" id="description" class="form-control"></textarea>
+               </div>
+               <div class="form-group">
+                    <label>Tiêu đề bài viết</label>
+                    <input class="form-control" type="text" name="seo_title" />
+               </div>
+               <div class="form-group">
+                    <label>Từ khóa SEO</label>
+                    <input class="form-control" type="text" name="seo_keywords" />
+               </div>
+               <div class="form-group">
+                    <label>Mô tả Description</label>
+                    <textarea class="form-control" name="seo_description" rows="3"></textarea>
+               </div>
+
+               <button class="btn btn-success">Tạo sản phẩm</button>
+          </form>
+     </div>
+</div>
+<script>
+     CKEDITOR.replace('infomation');
+     CKEDITOR.replace('description');
+     // Lấy đối tượng input từ HTML dựa vào id
+     var imageInput = document.getElementById('imageInput');
+
+     // Lắng nghe sự kiện 'change' khi người dùng chọn một file
+     imageInput.addEventListener('change', function (event) {
+          var file = event.target.files[0]; // Lấy file đầu tiên trong danh sách các file đã chọn
+
+          // Kiểm tra xem người dùng đã chọn file hay chưa
+          if (file) {
+               var reader = new FileReader(); // Tạo đối tượng FileReader để đọc nội dung của file
+
+               // Xử lý sự kiện 'load' khi FileReader hoàn thành việc đọc file
+               reader.addEventListener('load', function () {
+                    var imageURL = reader.result; // Lấy URL hình ảnh đã đọc từ file
+
+                    var imageElement = document.getElementById('imageElement');
+                    imageElement.src = imageURL; // Gán URL hình ảnh cho thuộc tính 'src' của thẻ 'img'
+               });
+
+               reader.readAsDataURL(file); // Đọc file dưới dạng URL dữ liệu (data URL)
+          }
+     });
+</script>
