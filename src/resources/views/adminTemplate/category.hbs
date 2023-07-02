@@ -1,0 +1,82 @@
+<style>
+     td,
+     th {
+          vertical-align: unset !important;
+          text-align: center;
+     }
+     .editForm{
+        text-align: left !important;
+     }
+     .editTitle{
+        text-align: left !important;
+        margin-bottom: 0;
+     }
+     .field{
+        padding: 3px;
+        border: 1px solid #343A40;
+     }
+</style>
+
+<div class="container-fluid">
+     <div class="form-container">
+          <form method="get">
+               <div class="form-group">
+                    <label for="">Tìm kiếm</label>
+                    <input type="text" class="form-control" name="keyword" onblur="this.form.submit()"
+                         value="{{keyword}}" placeholder="Nhập tên danh mục cần tìm" />
+               </div>
+          </form>
+     </div>
+     <div class="table-container">
+          <table class="table">
+               <thead class="thead-dark">
+                    <tr>
+                         <th scope="col">Mã</th>
+                         <th scope="col">Tên loại sản phẩm</th>
+                         <th scope="col">Mã slug</th>
+                         <th scope="col">Trạng thái</th>
+                         <th scope="col">...</th>
+                    </tr>
+               </thead>
+               <tbody>
+                    {{#each categories}}
+                    <tr>
+                         <th scope="row">{{id}}</th>
+                         <td>{{name}}</td>
+                         <td>{{slug}}</td>
+                         <td>{{status}}</td>
+                         <td>
+                            {{!-- Collapse Modal --}}
+                                <button class="btn btn-primary collapse-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                <img src="/images/cog.png">
+                                </button>
+                            <div class="collapse collapse-element" id="collapseExample">
+                                <div class="editForm">
+                                    <form class="field">
+                                        <input type="text" value="{{name}}">
+                                        <button class="btn-success">Lưu</button>
+                                        <button class="btn-danger">Hủy</button>
+                                    </form>
+                                </div>
+                            </div>
+                         </td>
+                    </tr>
+                    {{/each}}
+               </tbody>
+          </table>
+     </div>
+</div>
+<!-- Script đóng mở form Collapse viết bằng tay của Khải -->
+<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function() {
+    var collapseButtons = document.querySelectorAll('.collapse-button');
+    var collapseElements = document.querySelectorAll('.collapse-element');
+    
+    collapseButtons.forEach(function(button, index) {
+        button.addEventListener('click', function() {
+        var collapse = new bootstrap.Collapse(collapseElements[index]);
+        collapse.toggle();
+        });
+    });
+    });
+</script>
