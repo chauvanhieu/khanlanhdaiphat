@@ -4,16 +4,14 @@
           vertical-align: unset !important;
           text-align: center;
      }
-     .editForm{
-        text-align: left !important;
+
+     .editForm {
+          text-align: left !important;
      }
-     .editTitle{
-        text-align: left !important;
-        margin-bottom: 0;
-     }
-     .field{
-        padding: 3px;
-        border: 1px solid #343A40;
+
+     .editTitle {
+          text-align: left !important;
+          margin-bottom: 0;
      }
 </style>
 
@@ -40,26 +38,35 @@
                </thead>
                <tbody>
                     {{#each categories}}
-                    <tr>
+                    <tr style="border: unset !important;">
                          <th scope="row">{{id}}</th>
                          <td>{{name}}</td>
                          <td>{{slug}}</td>
                          <td>{{status}}</td>
-                         <td>
-                            {{!-- Collapse Modal --}}
-                                <button class="btn btn-primary collapse-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                <img src="/images/cog.png">
-                                </button>
-                            <div class="collapse collapse-element" id="collapseExample">
-                                <div class="editForm">
-                                    <form class="field">
-                                        <input type="text" value="{{name}}">
-                                        <button class="btn-success">Lưu</button>
-                                        <button class="btn-danger">Hủy</button>
-                                    </form>
-                                </div>
-                            </div>
+                         <td>{{!-- Collapse Modal --}}
+                              <button class="btn btn-primary collapse-button" type="button" data-bs-toggle="collapse"
+                                   data-bs-target="#collapseExample{{id}}" aria-expanded="false"
+                                   aria-controls="collapseExample{{id}}">
+                                   <img src="/images/cog.png">
+                              </button>
                          </td>
+                    </tr>
+                    <tr>
+                         <td colspan="5">
+                              <div class="collapse collapse-element" id="collapseExample{{id}}"
+                                   style="width: 100%  !important;">
+                                   <div class="editForm">
+                                        <form class="field">
+                                             <div class="row" style="justify-content: space-around !important">
+                                                  <input class="form-control col-5" type="text" value="{{name}}">
+                                                  <button class="form-control btn-success col-2">Lưu</button>
+                                                  <button class="form-control btn-danger col-2">Hủy</button>
+                                             </div>
+                                        </form>
+                                   </div>
+                              </div>
+                         </td>
+
                     </tr>
                     {{/each}}
                </tbody>
@@ -68,15 +75,15 @@
 </div>
 <!-- Script đóng mở form Collapse viết bằng tay của Khải -->
 <script type="text/javascript">
-	document.addEventListener('DOMContentLoaded', function() {
-    var collapseButtons = document.querySelectorAll('.collapse-button');
-    var collapseElements = document.querySelectorAll('.collapse-element');
-    
-    collapseButtons.forEach(function(button, index) {
-        button.addEventListener('click', function() {
-        var collapse = new bootstrap.Collapse(collapseElements[index]);
-        collapse.toggle();
-        });
-    });
-    });
+     document.addEventListener('DOMContentLoaded', function () {
+          var collapseButtons = document.querySelectorAll('.collapse-button');
+          var collapseElements = document.querySelectorAll('.collapse-element');
+
+          collapseButtons.forEach(function (button, index) {
+               button.addEventListener('click', function () {
+                    var collapse = new bootstrap.Collapse(collapseElements[index]);
+                    collapse.toggle();
+               });
+          });
+     });
 </script>
