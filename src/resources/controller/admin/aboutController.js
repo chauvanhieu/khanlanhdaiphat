@@ -2,7 +2,9 @@ const About = require("../../model/about");
 
 class AdminAboutController {
   async index(req, res) {
-    const post = await About.findOne({ where: { id: 1 } });
+    const post = await About.findOne({ where: { id: 1 } }).catch((err) => {
+      res.redirect("/admin");
+    });
 
     res.render("adminTemplate/about", {
       about: post.dataValues,

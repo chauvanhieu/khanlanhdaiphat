@@ -1,19 +1,13 @@
 const Category = require("../../model/categories");
 const Sequelize = require("sequelize");
+const slugify = require("slugify");
 
-function removeAccent(str) {
-  str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-  str = str.toLowerCase();
-  str = str.trim();
-  return str.replace(/[^a-z0-9]+/g, "-");
+function generateSlug(text) {
+  return slugify(text, {
+    lower: true,
+    strict: true,
+  });
 }
-
-function generateSlug(title) {
-  // Loại bỏ các dấu tiếng Việt và chuyển đổi chuỗi thành slug
-  const slug = removeAccent(title);
-  return slug;
-}
-
 
 class AdminCategoryController {
   async index(req, res) {
@@ -57,7 +51,7 @@ class AdminCategoryController {
   async create(req, res) {
     const { newCategory } = req.body;
     try {
-      const category = await Category.create({
+      await Category.create({
         name: newCategory,
         slug: generateSlug(newCategory),
         status: 1,
@@ -78,16 +72,16 @@ class AdminCategoryController {
     const { newStatus } = req.body;
 
     try {
-      const category = await Category.findByPk(id);
-      if (!category) {
+      await Category.update(
+        {
+          name: newCategoryName,
+          slug: generateSlug(newCategoryName),
+          status: newStatus,
+        },
+        { where: { id: id } }
+      ).catch((error) => {
         return res.redirect("/admin/danh-muc");
-      }
-
-      category.name = newCategoryName;
-      category.slug = generateSlug(newCategoryName);
-      category.status = newStatus;
-
-      await category.save();
+      });
 
       return res.redirect("/admin/danh-muc");
     } catch (error) {
@@ -100,13 +94,14 @@ class AdminCategoryController {
     const { newCategoryStatus } = req.body;
 
     try {
-      const category = await Category.findByPk(id);
-      if (!category) {
+      await Category.update(
+        {
+          status: newCategoryStatus,
+        },
+        { where: { id: id } }
+      ).catch((error) => {
         return res.redirect("/admin/danh-muc");
-      }
-
-      category.status = newCategoryStatus;
-      await category.save();
+      });
 
       return res.redirect("/admin/danh-muc");
     } catch (error) {
