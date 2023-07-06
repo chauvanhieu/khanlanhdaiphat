@@ -31,6 +31,7 @@ class AdminCategoryController {
 
     await Category.findAll({
       where: whereClause,
+      order: [["id", "DESC"]],
     }).then((items) => {
       items.forEach((item) => {
         listCategories.push({

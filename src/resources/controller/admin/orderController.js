@@ -28,6 +28,7 @@ class AdminOrderController {
     try {
       const items = await Order.findAll({
         where: whereClause,
+        order: [["id", "DESC"]],
         include: Product,
       });
 
