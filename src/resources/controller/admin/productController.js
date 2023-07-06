@@ -1,6 +1,7 @@
 const Product = require("../../model/products");
 const Category = require("../../model/categories");
 const slugify = require("slugify");
+const { Op } = require("sequelize");
 
 function convertToSlug(text) {
   return slugify(text, {
@@ -13,6 +14,9 @@ class AdminProductController {
   async index(req, res) {
     let categories = [];
     let products = [];
+    const keyword = req.query.keyword;
+    const category_id = req.query.danh_muc;
+    let where = {};
 
     await Category.findAll().then((items) => {
       items.forEach((item) => {
@@ -26,7 +30,56 @@ class AdminProductController {
       });
     });
 
-    await Product.findAll().then((items) => {
+    if (keyword && category_id) {
+      // Lọc sản phẩm theo cả từ khóa và category_id
+      where = {
+        [Op.and]: [
+          {
+            [Op.or]: [
+              {
+                name: {
+                  [Op.like]: `%${keyword}%`,
+                },
+              },
+              {
+                description: {
+                  [Op.like]: `%${keyword}%`,
+                },
+              },
+            ],
+          },
+          {
+            category_id: category_id,
+          },
+        ],
+      };
+    } else if (keyword) {
+      // Lọc sản phẩm theo từ khóa
+      where = {
+        [Op.or]: [
+          {
+            name: {
+              [Op.like]: `%${keyword}%`,
+            },
+          },
+          {
+            description: {
+              [Op.like]: `%${keyword}%`,
+            },
+          },
+        ],
+      };
+    } else if (category_id) {
+      where = {
+        category_id: category_id,
+      };
+    }
+
+    await Product.findAll({
+      where: where,
+      include: Category,
+      order: [["id", "DESC"]],
+    }).then((items) => {
       items.forEach((item) => {
         let i = {
           id: item.id,
@@ -117,7 +170,7 @@ class AdminProductController {
       seo_keywords,
       old_image,
     } = req.body;
-
+    let img = "";
     if (req.file) {
       img = "/images/" + req.file.filename;
     } else {

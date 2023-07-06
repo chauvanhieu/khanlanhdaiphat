@@ -33,6 +33,7 @@ class AdminCustomerController {
 
     await Customer.findAll({
       where: whereClause,
+      order: [["id", "DESC"]],
     }).then((items) => {
       items.forEach((item) => {
         listCustomer.push({

@@ -19,7 +19,7 @@ class AdminAboutController {
       const { content, seo_title, seo_keywords, seo_description } = req.body;
       await About.update(
         { content, seo_title, seo_keywords, seo_description },
-        { where: { id: 1 } }
+        { where: { id: 1 }, order: [["id", "DESC"]] }
       );
 
       res.redirect("/admin/gioi-thieu");

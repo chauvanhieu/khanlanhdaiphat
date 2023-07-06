@@ -1,7 +1,6 @@
 const { Op } = require("sequelize");
 const Product = require("../model/products");
 const Category = require("../model/categories");
-const Admin = require("../model/admin");
 
 const SEO_KEYWORDS =
   "khăn lạnh đại phát giá rẻ, khăn lạnh Đại Phát, khăn ướt để lau, khăn ướt bmt, cồn lạnh, bao tăm bao đũa bmt";
@@ -61,7 +60,7 @@ class ProductController {
 
     try {
       let data = [];
-      const products = await Product.findAll({
+      await Product.findAll({
         where: where,
         include: Category,
       }).then((items) => {
