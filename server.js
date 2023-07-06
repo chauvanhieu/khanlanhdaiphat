@@ -7,15 +7,15 @@ require("express-async-errors");
 const port = 8080;
 
 const setupJWT = require("./src/resources/config/loginJWT");
-const uploadConfig = require("./src/resources/config/uploadConfig");
 const midlewareConfig = require("./src/resources/config/midlewareConfig");
 const viewEngineConfig = require("./src/resources/config/viewEngineConfig");
 const initRouter = require("./src/resources/router/indexRouter");
+const uploadConfig = require("./src/resources/config/uploadConfig");
 
-uploadConfig(app);
 midlewareConfig(app);
 viewEngineConfig(app);
 setupJWT(app);
+uploadConfig(app);
 
 initRouter(app);
 

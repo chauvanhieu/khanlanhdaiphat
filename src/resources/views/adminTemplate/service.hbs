@@ -30,7 +30,13 @@
      </div>
 </div>
 <script>
-     CKEDITOR.replace('editor');
+     CKEDITOR.replace('editor', {
+          extraPlugins: 'filebrowser',
+          filebrowserBrowseUrl: '/list',//upload location
+          filebrowserUploadMethod: 'form',
+          filebrowserUploadUrl: '/upload'//route
+
+     });
      function validateForm() {
           // Lấy các trường dữ liệu từ form
           var content = document.forms[0].content.value;
