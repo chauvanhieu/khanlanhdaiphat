@@ -1,6 +1,7 @@
 const Product = require("../../model/products");
 const Category = require("../../model/categories");
 const slugify = require("slugify");
+const MySQL = require("../../config/MySQL");
 
 function convertToSlug(text) {
   return slugify(text, {

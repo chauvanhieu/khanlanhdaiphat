@@ -7,7 +7,8 @@
     "start": "node server.js",
     "postinstall": "cp .htaccess src/public/",
     "preinstall": "mkdir -p src/public/uploads",
-    "setup": "npm run preinstall && npm install && npm run postinstall"
+    "setup": "npm run preinstall && npm install && npm run postinstall",
+    "dev": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",

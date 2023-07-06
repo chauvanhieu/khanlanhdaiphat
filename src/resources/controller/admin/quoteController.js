@@ -8,7 +8,7 @@ class AdminQuoteController {
 
   async handlePost(req, res) {
     const { content, seo_title, seo_keywords, seo_description } = req.body;
-    let quote = await Admin.findByPk(1);
+    let quote = await Quote.findByPk(1);
     quote.content = content;
     quote.seo_title = seo_title;
     quote.seo_keywords = seo_keywords;
