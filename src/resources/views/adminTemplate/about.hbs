@@ -1,52 +1,27 @@
 <style>
-  #editor { height: 600px !important; }
+  #editor {
+    height: 600px !important;
+  }
 </style>
 <div class="container" style="padding: 0 50px 50px 50px">
   <div class="form-container">
-    <form
-      action="/admin/gioi-thieu"
-      method="post"
-      onsubmit="return validateForm()"
-    >
+    <form action="/admin/gioi-thieu" method="post" onsubmit="return validateForm()">
       <div class="form-group">
         <label>Nội dung bài viết</label>
-        <textarea
-          class="form-control"
-          id="editor"
-          name="content"
-          rows="3"
-          required
-        >{{about.content}}</textarea>
+        <textarea class="form-control" id="editor" name="content" rows="3" required>{{about.content}}</textarea>
       </div>
 
       <div class="form-group">
         <label>Tiêu đề bài viết</label>
-        <input
-          class="form-control"
-          type="text"
-          name="seo_title"
-          required
-          value="{{about.seo_title}}"
-        />
+        <input class="form-control" type="text" name="seo_title" required value="{{about.seo_title}}" />
       </div>
       <div class="form-group">
         <label>Từ khóa SEO</label>
-        <input
-          class="form-control"
-          type="text"
-          name="seo_keywords"
-          required
-          value="{{about.seo_keywords}}"
-        />
+        <input class="form-control" type="text" name="seo_keywords" required value="{{about.seo_keywords}}" />
       </div>
       <div class="form-group">
         <label>Mô tả Description</label>
-        <textarea
-          class="form-control"
-          name="seo_description"
-          rows="3"
-          required
-        >{{about.seo_description}}</textarea>
+        <textarea class="form-control" name="seo_description" rows="3" required>{{about.seo_description}}</textarea>
       </div>
 
       <button type="submit" class="btn btn-success p-2">Cập nhật</button>
@@ -54,7 +29,13 @@
   </div>
 </div>
 <script>
-  CKEDITOR.replace('editor');
+  CKEDITOR.replace('editor', {
+    extraPlugins: 'filebrowser',
+    filebrowserBrowseUrl: '/list',//upload location
+    filebrowserUploadMethod: 'form',
+    filebrowserUploadUrl: '/upload'//route
+
+  });
 
   function validateForm() {
     var content = document.querySelector('textarea[name="content"]').value;

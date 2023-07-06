@@ -50,8 +50,20 @@
      </div>
 </div>
 <script>
-     CKEDITOR.replace('infomation');
-     CKEDITOR.replace('description');
+     CKEDITOR.replace('infomation', {
+          extraPlugins: 'filebrowser',
+          filebrowserBrowseUrl: '/list',//upload location
+          filebrowserUploadMethod: 'form',
+          filebrowserUploadUrl: '/upload'//route
+
+     });
+     CKEDITOR.replace('description', {
+          extraPlugins: 'filebrowser',
+          filebrowserBrowseUrl: '/list',//upload location
+          filebrowserUploadMethod: 'form',
+          filebrowserUploadUrl: '/upload'//route
+
+     });
      // Lấy đối tượng input từ HTML dựa vào id
      var imageInput = document.getElementById('imageInput');
 
